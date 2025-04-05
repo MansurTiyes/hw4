@@ -2,4 +2,14 @@ hw4_tests/
 bst-test
 equal-paths-test
 *.o
+bst-test.cpp
+.vscode/
+avl-test
+avl-test2
+avl-test_edge
+avl_test.cpp
+avl_test_edge.cpp
+bst-test2
+bst-test2.cpp
+bst_notes.txt
 
