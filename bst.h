@@ -258,6 +258,7 @@ protected:
     Node<Key, Value>* findRoot(Node<Key, Value>* current) const;
     bool isBalanced_recursive(Node<Key, Value>* current) const;
     int treeHeight(Node<Key, Value>* root, int count) const;
+    void clearHelper(Node<Key, Value>* node);
 
 protected:
     Node<Key, Value>* root_;
@@ -666,14 +667,35 @@ Node<Key, Value>* BinarySearchTree<Key, Value>::recursiveLargest(Node<Key, Value
 * A method to remove all contents of the tree and
 * reset the values in the tree for use again.
 */
+// template<typename Key, typename Value>
+// void BinarySearchTree<Key, Value>::clear()
+// {
+//     // TODO
+//     while(this->root_ != nullptr) {
+//         this->remove(root_->getKey());
+//         // this->printRoot(root_);
+//     }
+// }
+
 template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::clear()
 {
-    // TODO
-    while(this->root_ != nullptr) {
-        this->remove(root_->getKey());
-        // this->printRoot(root_);
+    // Replace the existing clear implementation with a recursive helper function
+    clearHelper(root_);
+    root_ = nullptr;
+}
+
+template<typename Key, typename Value>
+void BinarySearchTree<Key, Value>::clearHelper(Node<Key, Value>* node)
+{
+    if (node == nullptr) {
+        return;
     }
+    
+    // Post-order traversal: clear left, clear right, then delete node
+    clearHelper(node->getLeft());
+    clearHelper(node->getRight());
+    delete node;
 }
 
 
